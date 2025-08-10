@@ -1,0 +1,30 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>ui_imgs/icons/人脸识别 (1).png</file>
+    <file>ui_imgs/icons/关闭视频.png</file>
+    <file>ui_imgs/icons/人脸识别 (3).png</file>
+    <file>ui_imgs/icons/开启视频.png</file>
+    <file>ui_imgs/icons/关于我们.png</file>
+    <file>ui_imgs/icons/人脸识别 (2).png</file>
+    <file>ui_imgs/icons/退出.png</file>
+    <file>ui_imgs/icons/基础数据录入_编辑录入操作_jurassic.png</file>
+    <file>ui_imgs/icons/人脸识别.png</file>
+    <file>ui_imgs/icons/信息_记录.png</file>
+    <file>ui_imgs/icons/验收数据管理.png</file>
+    <file>ui_imgs/icons/显示全部.png</file>
+    <file>ui_imgs/icons/保存.png</file>
+    <file>ui_imgs/icons/删除.png</file>
+    <file>ui_imgs/icons/修改.png</file>
+    <file>ui_imgs/icons/takephoto.png</file>
+    <file>ui_imgs/icons/search.png</file>
+    <file>ui_imgs/icons/camera.png</file>
+    <file>ui_imgs/icons/folder.png</file>
+    <file>ui_imgs/icons/img.png</file>
+    <file>ui_imgs/icons/video.png</file>
+  </qresource>
+  <qresource prefix="imgs">
+    <file>ui_imgs/bgs/bg2.jpg</file>
+    <file>ui_imgs/bgs/bg3.jpg</file>
+    <file>ui_imgs/bgs/bg3.jpg</file>
+  </qresource>
+</RCC>

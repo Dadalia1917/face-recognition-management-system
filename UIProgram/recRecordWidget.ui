@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>recRecordFrom</class>
+ <widget class="QWidget" name="recRecordFrom">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>910</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>901</width>
+     <height>700</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>华文楷体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="title">
+    <string>打卡信息</string>
+   </property>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>110</y>
+      <width>851</width>
+      <height>541</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>华文楷体</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <column>
+     <property name="text">
+      <string>序号</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>华文楷体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>姓名</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>华文楷体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>个人ID</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>华文楷体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>检测日期</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>华文楷体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+    </column>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>50</y>
+      <width>851</width>
+      <height>39</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLineEdit" name="lineEdit">
+         <property name="font">
+          <font>
+           <family>华文楷体</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="placeholderText">
+          <string>支持姓名与ID查询</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="searchBtn">
+         <property name="font">
+          <font>
+           <family>华文楷体</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>搜索</string>
+         </property>
+         <property name="icon">
+          <iconset theme="21">
+           <activeon>:/icons/ui_imgs/icons/search.png</activeon>
+          </iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="delBtn">
+       <property name="font">
+        <font>
+         <family>华文楷体</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>删除</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <activeon>:/icons/ui_imgs/icons/删除.png</activeon>
+        </iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="saveBtn">
+       <property name="font">
+        <font>
+         <family>华文楷体</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>保存操作</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <activeon>:/icons/ui_imgs/icons/保存.png</activeon>
+        </iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="showAllBtn">
+       <property name="font">
+        <font>
+         <family>华文楷体</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>全部信息</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <activeon>:/icons/ui_imgs/icons/显示全部.png</activeon>
+        </iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="img_source.qrc"/>
+ </resources>
+ <connections/>
+</ui>
