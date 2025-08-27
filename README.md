@@ -16,7 +16,7 @@
 
 ### 📖 项目简介
 
-Face Recognition Management System 是一个基于 PyQt5、OpenCV 和深度学习技术的智能人脸识别系统。该系统集成了人脸检测、识别、信息管理和考勤打卡功能，适用于企业、学校等需要人员管理的场所。
+Face Recognition Management System 是一个基于 PyQt5、OpenCV 和深度学习技术的智能人脸识别系统。该系统集成了人脸检测、识别、信息管理和考勤打卡功能，适用于企业、学校等需要人员管理的场所。系统采用模块化设计，通过多种UML图展示系统结构与功能，便于理解与二次开发。
 
 ### ✨ 主要功能
 
@@ -115,6 +115,268 @@ face-recognition-management-system/
     └── ui_imgs/            # 界面资源文件
 ```
 
+### 🔄 系统架构图
+
+以下是本系统的整体架构图，展示了系统的各个层次和组件：
+
+```mermaid
+flowchart TD
+    subgraph 系统架构图
+    A[前端界面层]
+    B[业务逻辑层]
+    C[数据存储层]
+    D[模型层]
+
+    A --> B
+    B --> C
+    B --> D
+
+    subgraph 前端界面层
+        A1[登录界面]
+        A2[人脸识别界面]
+        A3[信息录入界面]
+        A4[数据管理界面]
+        A5[考勤记录界面]
+    end
+
+    subgraph 业务逻辑层
+        B1[用户认证模块]
+        B2[人脸检测模块]
+        B3[人脸识别模块]
+        B4[数据管理模块]
+        B5[考勤记录模块]
+    end
+
+    subgraph 数据存储层
+        C1[SQLite数据库]
+        C2[JSON文件存储]
+        C3[CSV文件存储]
+        C4[图像文件存储]
+    end
+
+    subgraph 模型层
+        D1[face_recognition模型]
+        D2[dlib人脸识别模型]
+        D3[人脸特征点检测模型]
+    end
+    end
+```
+
+### 📊 类图
+
+下面的类图展示了系统中的主要类及其关系：
+
+```mermaid
+classDiagram
+    direction TB
+    
+    %% 主要界面类
+    class MainWindow {
+        +FaceRecPage face_rec_page
+        +InfoEntryPage info_entry_page
+        +DataManagePage data_manage_page
+        +RecRecordPage rec_record_page
+        +signalconnect()
+        +buttonIsClicked()
+        +video_start()
+        +video_stop()
+        +face_entry_open_img()
+        +recognize_faces(img, boxes)
+    }
+    
+    %% UI页面类
+    class FaceRecPage
+    class InfoEntryPage
+    class DataManagePage
+    class RecRecordPage
+    
+    %% 登录相关类
+    class LoginMainWin {
+        +MainWindow main_win
+        +Loginfunctions loginfunctions
+        +database_init()
+    }
+    
+    class Loginfunctions {
+        +user_create()
+        +user_delete()
+        +user_login()
+        +user_register()
+    }
+    
+    %% 工具和配置类
+    class detect_tools {
+        +info_entry_face_detect(img)
+        +face_rec_face_detect(img)
+        +get_img_encode(img, location)
+        +read_json(path)
+        +save_json(path, data)
+        +get_database_faces(path)
+    }
+    
+    class Config {
+        +data_path
+        +user_img_path
+        +clock_on_records_file
+        +users_database_path
+    }
+    
+    %% 关系定义
+    LoginMainWin --> MainWindow : 创建并持有
+    LoginMainWin --> Loginfunctions : 创建并持有
+    MainWindow --> FaceRecPage : 包含
+    MainWindow --> InfoEntryPage : 包含
+    MainWindow --> DataManagePage : 包含
+    MainWindow --> RecRecordPage : 包含
+    MainWindow ..> detect_tools : 使用
+    LoginMainWin ..> Config : 使用配置
+    MainWindow ..> Config : 使用配置
+```
+
+### 👥 用例图
+
+下面是系统的用例图，展示了系统支持的主要功能和用户角色：
+
+```mermaid
+graph TB
+    %% 定义角色
+    User((用户))
+    Admin((管理员))
+    
+    %% 定义用例
+    UC1[用户登录]
+    UC2[注册用户]
+    UC3[人脸信息录入]
+    UC4[人脸图像采集]
+    UC5[拍照录入]
+    UC6[图片导入]
+    UC7[人脸识别]
+    UC8[实时摄像头识别]
+    UC9[图片识别]
+    UC10[数据管理]
+    UC11[查看考勤记录]
+    UC12[修改人员信息]
+    UC13[删除人员信息]
+    UC14[导出考勤数据]
+    
+    %% 用例关系
+    User --> UC1
+    User --> UC7
+    User --> UC11
+    
+    Admin --> UC1
+    Admin --> UC2
+    Admin --> UC3
+    Admin --> UC10
+    Admin --> UC11
+    Admin --> UC12
+    Admin --> UC13
+    Admin --> UC14
+    
+    UC3 --> UC4
+    UC4 --> UC5
+    UC4 --> UC6
+    UC7 --> UC8
+    UC7 --> UC9
+    UC11 --> UC14
+    
+    %% 添加标题
+    subgraph 人脸识别信息管理系统-用例图
+    UC1
+    UC2
+    UC3
+    UC4
+    UC5
+    UC6
+    UC7
+    UC8
+    UC9
+    UC10
+    UC11
+    UC12
+    UC13
+    UC14
+    end
+```
+
+### ⏱️ 时序图
+
+以下时序图展示了人脸识别的执行流程：
+
+```mermaid
+sequenceDiagram
+    participant User as 用户
+    participant UI as 用户界面
+    participant RecSystem as 人脸识别系统
+    participant Database as 数据库
+    
+    User->>UI: 1.选择人脸识别方式
+    alt 图片识别
+        User->>UI: 2a.上传图片
+        UI->>RecSystem: 3a.传输图片数据
+    else 摄像头识别
+        User->>UI: 2b.开启摄像头
+        UI->>RecSystem: 3b.传输视频流
+        loop 每帧视频
+            RecSystem->>RecSystem: 4.检测人脸
+        end
+    end
+    
+    RecSystem->>RecSystem: 5.提取人脸特征
+    RecSystem->>Database: 6.获取已存储人脸特征
+    Database-->>RecSystem: 7.返回人脸数据
+    RecSystem->>RecSystem: 8.人脸匹配比对
+    
+    alt 识别成功
+        RecSystem->>UI: 9a.显示识别结果和人员信息
+        RecSystem->>Database: 10.记录考勤信息
+        Database-->>RecSystem: 11.记录成功
+    else 识别失败
+        RecSystem->>UI: 9b.显示未识别信息
+    end
+    
+    UI-->>User: 12.展示最终结果
+```
+
+### 🔄 状态图
+
+下面的状态图展示了系统的状态转换流程：
+
+```mermaid
+stateDiagram-v2
+    [*] --> 登录界面
+    登录界面 --> 主界面: 认证成功
+    登录界面 --> 登录界面: 认证失败
+    
+    主界面 --> 人脸识别模块
+    主界面 --> 信息录入模块
+    主界面 --> 数据管理模块
+    主界面 --> 考勤记录模块
+    主界面 --> [*]: 退出系统
+    
+    人脸识别模块 --> 图片识别: 选择图片识别
+    人脸识别模块 --> 摄像头识别: 选择摄像头识别
+    
+    图片识别 --> 识别结果
+    摄像头识别 --> 识别结果
+    
+    识别结果 --> 记录考勤: 识别成功
+    识别结果 --> 人脸识别模块: 识别失败
+    
+    信息录入模块 --> 人脸采集
+    人脸采集 --> 信息填写
+    信息填写 --> 保存信息
+    保存信息 --> 信息录入模块
+    
+    数据管理模块 --> 查询信息
+    数据管理模块 --> 修改信息
+    数据管理模块 --> 删除信息
+    
+    考勤记录模块 --> 查看记录
+    考勤记录模块 --> 搜索记录
+    考勤记录模块 --> 导出记录
+```
+
 ### 🎯 使用指南
 
 1. **首次使用**
@@ -203,7 +465,7 @@ A: 检查 Python 版本和依赖包是否正确安装，确保模型文件完整
 
 ### 📖 Project Description
 
-Face Recognition Management System is an intelligent face recognition system based on PyQt5, OpenCV and deep learning technology. The system integrates face detection, recognition, information management, and attendance tracking functions, suitable for enterprises, schools, and other places that require personnel management.
+Face Recognition Management System is an intelligent face recognition system based on PyQt5, OpenCV and deep learning technology. The system integrates face detection, recognition, information management, and attendance tracking functions, suitable for enterprises, schools, and other places that require personnel management. The system adopts a modular design, with various UML diagrams illustrating the system structure and functionality for better understanding and secondary development.
 
 ### ✨ Key Features
 
